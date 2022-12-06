@@ -41,7 +41,7 @@ def Insert(conn, data):
     conn.commit()
     return "OK"
 
-@app.route('/', methods=["POST"])
+@app.route('/audit', methods=["POST"])
 def main():
     json_data = request.get_json(force=True)
     json_data = str(json_data)

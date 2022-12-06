@@ -102,7 +102,7 @@ def push_file(file):
 # calling the audit api
 def audit(d):
     print("Started Writing to the audit table")
-    url = "http://43.205.208.158:8080/"
+    url = "http://43.205.208.158:8080/audit"
     #url = "http://127.0.0.1:8080/"
     res = requests.post(url, json=d)
     print(f"writing done code returned with status code {res.status_code}")
@@ -124,14 +124,14 @@ def main(location, query, table_name):
     #timestamp = datetime.now()
     bucket = push_file(compressed_file)
     d = {"query_execution_time" : query_time,"file_writing_time" : writing_time, "compression_time" : (end_compression-start_compression) , "initial_file_size" :  initial_size, "final_file_size" :  final_size, "rows_affected" : row_count, "committed_file" : f"{bucket}/source/tpcds/{compressed_file.split('/')[-1]}" }
-    d["job_name"] = ""
+    d["job_name"] = "python-fact-extract"
     d["job_type"] = "extract"
     d["source"] = "tpcds"
     audit(d)
     print(f"Execution ends at {datetime.now()}")
     return d
 
-@app.route('/', methods=["POST"])
+@app.route('/extract', methods=["POST"])
 def entry():
     location=""
     query=""
