@@ -59,3 +59,12 @@ Press CTRL+C to quit
  * Debugger PIN: 127-822-027
  ```
 > call extract_job at http://127.0.0.1:5000/extract
+
+## Testing
+
+To test the code let's use curl command as follow.
+
+```console
+curl -X POST http://ec2-43-205-208-158.ap-south-1.compute.amazonaws.com:5000/extract -d '{ "location" : "/home/ubuntu/out/", "query" : "select * from store_sales limit 33", "table_name" : "store_sales"}'
+```
+
