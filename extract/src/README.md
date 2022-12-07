@@ -64,7 +64,14 @@ Press CTRL+C to quit
 
 To test the code let's use curl command as follow.
 
+> Testing extract_job.py
+
 ```console
 curl -X POST http://ec2-43-205-208-158.ap-south-1.compute.amazonaws.com:5000/extract -d '{ "location" : "/home/ubuntu/out/", "query" : "select * from store_sales limit 33", "table_name" : "store_sales"}'
 ```
 
+> Testing audit.py
+
+```console
+curl -X POST http://ec2-43-205-208-158.ap-south-1.compute.amazonaws.com:8080/audit -d '{"query_execution_time" : "0.001","file_writing_time" : "0.002", "compression_time" : "0.003" , "initial_file_size" :  "30 KB", "final_file_size" :  "0.5 KB", "rows_affected" : "600", "committed_file" : "file_destination_minio", "job_name" : "python-fact-extract", "job_type" : "extract", "source" : "tpcds"}'
+```

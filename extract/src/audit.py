@@ -39,7 +39,7 @@ def Insert(conn, data):
     '''
     cur.execute(query)
     conn.commit()
-    return "OK"
+    return "OK\n"
 
 @app.route('/audit', methods=["POST"])
 def main():
