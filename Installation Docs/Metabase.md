@@ -181,7 +181,7 @@ Password : postgres
 ```
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/postgres_db.jpeg"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/postgres_db.jpeg"/>
 
 </div>
 

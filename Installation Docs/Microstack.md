@@ -109,7 +109,7 @@ OAEHxLgCBz7Wz4usvolAAt61TrDUz6zz
 
 Upon logging in you should see the created instance:
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/Created%20Instance.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/Created%20Instance.png">
 
 
 To enable access to internet within the virtually created VMs, within your Host VM, run the following:
@@ -134,21 +134,21 @@ openstack security group create allow-9100
 ```
 Access the UI at Public IP of your Host VM, and go to `/project/security_groups/` where you'll be able to see the newly created security group
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/Security-groups.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/Security-groups.png">
 
 Click on `Manage rules`, and then `Add Rule` to create rules in security group
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/Adding%20rules%20in%20seurity%20group.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/Adding%20rules%20in%20seurity%20group.png">
 
 After Adding the rule in security group, we need to Add newly created Security group to Instance. Head over to `/project/instances/` in UI, and select `Edit Security Groups` for the created Instance
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/Adding%20Security%20group%20to%20Instance.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/Adding%20Security%20group%20to%20Instance.png">
 
 Click on the `+` button infront of `allow-9100` security group, to ad it to Instace Security Groups. And Save.
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/adding%20group%20to%20instance.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/adding%20group%20to%20instance.png">
 
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/added%20group%20to%20instance.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/added%20group%20to%20instance.png">
 
 Now we can access the Node exporter outside the Guest VM on `http://<Guest-Public-IP>:9100/metrics`
 
