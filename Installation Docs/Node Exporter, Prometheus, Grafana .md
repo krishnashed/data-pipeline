@@ -1,5 +1,3 @@
-<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
-
 # Monitor Linux Servers Using Prometheus & Grafana
 
 > In this guide, you will learn how to setup Prometheus node exporter on a Linux server to export all node level metrics to the Prometheus server and visualize it on Grafana

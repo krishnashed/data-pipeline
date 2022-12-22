@@ -1,5 +1,3 @@
-<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
-
 # Installing Metabase on Ubuntu VM
 
 > Metabase is the BI tool with the friendly UX and integrated tooling to let your company explore data on their own.
