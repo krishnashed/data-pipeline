@@ -91,7 +91,7 @@ ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack ubuntu@<ip-address
 ```
 
 ## Access the cloud dashboard
-You can log in to the web UI by accessing Public IP of your Bare metal ( Larger VM )
+You can log in to the web UI by accessing Public IP of your Bare metal ( Host VM )
 
 ```shell
 https://<public-ip>
@@ -109,10 +109,10 @@ OAEHxLgCBz7Wz4usvolAAt61TrDUz6zz
 
 Upon logging in you should see the created instance:
 
-<img src="https://ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/6/63bd83db7248eccff12d8f2daf1b9ca0b354d467.png">
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/Created%20Instance.png">
 
 
-To enable access to internet within the virtually created VMs, within your larger VM, run the following:
+To enable access to internet within the virtually created VMs, within your Host VM, run the following:
 
 ```shell
 sudo iptables -t nat -A POSTROUTING -s 10.20.20.1/24 ! -d 10.20.20.1/24 -j MASQUERADE
