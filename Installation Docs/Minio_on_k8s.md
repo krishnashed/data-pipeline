@@ -275,6 +275,7 @@ Now that we have our PV and Storage class configured. Lets create Minio Tenants.
 Lets look at the resources at hand, I have a 3 master, 4 worker node k8s cluster, which has 4 Persistent Volumes of 10GB each in each of the worker nodes. I plan to deploy 2 tenants, each with 2 servers (nodes), 8 volumes in total (which mean all of the volumes in 2 nodes), with total size of 60GB and `directpv-min-io` as our storage class.
 
 Now you might ask, why didn't I use complete 80GB instead of just using 60GB ?
+
 When DirectPV formats a drive, its total usable size reduces, and some size if occupied by filesytem metadata, inodes, etc. which is normal for xfs file system.
 
 Creating Namespace for Minio Tenant
