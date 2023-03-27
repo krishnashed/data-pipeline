@@ -5,7 +5,7 @@
 Minio Kubernetes Architecture, learn [more](https://min.io/product/kubernetes)
 
 <div  style="align:center; margin-left:auto; margin-right:auto">
-<img  src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/Minio_k8s_arch.svg"/>
+<img  src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/minio-k8s-architecture.png"/>
 </div>
 
 ## Prerequisites
