@@ -139,6 +139,7 @@ $ kubectl directpv drives ls
 ```
 
 Learn more about [DirectPV](https://min.io/directpv)
+
 Learn more about various [DirectPV CLI commands](https://github.com/minio/directpv/blob/master/docs/cli.md)
 
 ## Minio Operator
