@@ -255,7 +255,7 @@ $ kubectl directpv drives ls
  /dev/vdf  10 GiB    -          xfs         -        k8-7  -            Ready
 ```
 
-Now are Persistent Volumes are ready to be used.
+Now our Persistent Volumes are ready to be used.
 
 **Configuring Storage class**
 
