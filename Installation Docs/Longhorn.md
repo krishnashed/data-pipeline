@@ -47,7 +47,7 @@ clean up complete
 ## Longhorn Architecture
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/k8ssandra-operator-architecture.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/longhorn-architecture.svg"/>
 </div>
 
 ## Installing Longhorn
