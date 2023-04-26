@@ -35,6 +35,8 @@ Now we will be able to access CVAT UI at `http://localhost:8080/` with the crede
 <img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-1.jpeg"/>
 </div>
 
+### Nuclio Serverless Functions
+
 Install `nuctl` command line tool to build and deploy serverless functions.
 
 ```shell
@@ -138,7 +140,7 @@ Under `Detector`, Select the model available which was recently exposed as serve
 <img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-12.jpeg"/>
 </div>
 
-Exporting the annotations
+### Exporting the annotations
 
 To the top left, click `Menu` to `Export job dataset`
 
