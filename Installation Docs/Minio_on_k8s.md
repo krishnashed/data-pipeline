@@ -33,8 +33,8 @@ Confirm that the output contains values for `--cluster-signing-cert-file` and `-
          - --client-ca-file=/etc/kubernetes/pki/ca.crt
          - --cluster-cidr=10.244.0.0/16
          - --cluster-name=my-cluster-name
-    	 - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
-    	 - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
+         - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
+         - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
 
 ### 3. MinIO Kubernetes Plugin (using Krew Plugin Manager)
 
