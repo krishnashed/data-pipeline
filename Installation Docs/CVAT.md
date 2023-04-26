@@ -32,7 +32,7 @@ docker exec -it cvat_server bash -ic 'python3 ~/manage.py createsuperuser'
 Now we will be able to access CVAT UI at `http://localhost:8080/` with the credentials created.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-1.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-1.jpeg"/>
 </div>
 
 Install `nuctl` command line tool to build and deploy serverless functions.
@@ -57,7 +57,7 @@ nuctl create project cvat
 The created project can be viewed at `http://localhost:8070/projects`
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-2.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-2.jpeg"/>
 </div>
 
 Deploying models under the project
@@ -79,7 +79,7 @@ nuctl deploy --project-name cvat \
 The deployed serverless functions:
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-3.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-3.jpeg"/>
 </div>
 
 ### Annotation using CVAT UI
@@ -87,13 +87,13 @@ The deployed serverless functions:
 Creating a Task
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-4.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-4.jpeg"/>
 </div>
 
 Fill details like `Task Name`, `Project Name`, Adding `Labels` and Input `Image(s)/Video`. Then choose `Submit & Open` to proceed.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-5.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-5.jpeg"/>
 </div>
 
 Additional Configurations can be made in `Advances configuration` section.
@@ -101,29 +101,29 @@ Additional Configurations can be made in `Advances configuration` section.
 The details of the created task can be viewed here. Click on `Job` under Tasks to Annotate.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-6.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-6.jpeg"/>
 </div>
 
 This is the Annotations Playground.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-7.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-7.jpeg"/>
 </div>
 
 Let's manually annotate a car using the `Draw a new Rectangle` tool. Select the label, Then click `Track` to annotate.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-8.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-8.jpeg"/>
 </div>
 
 Selecting top-left and bottom-right points to enclose the object.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-9.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-9.jpeg"/>
 </div>
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-10.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-10.jpeg"/>
 </div>
 
 Annotating using AI
@@ -131,11 +131,11 @@ Annotating using AI
 Under `Detector`, Select the model available which was recently exposed as serverless function using Nuclio. Establish mapping between `Model labels` and `Task labels`. Then click `Annotate` to Auto-annotate.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-11.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-11.jpeg"/>
 </div>
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-12.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-12.jpeg"/>
 </div>
 
 Exporting the annotations
@@ -143,11 +143,11 @@ Exporting the annotations
 To the top left, click `Menu` to `Export job dataset`
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-13.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-13.jpeg"/>
 </div>
 
 Select among the many options in `Export Format`, If you wish to save images along with annotations, check the `Save Images` option. Save the dataset with `Custom Name`.
 
 <div style="align:center; margin-left:auto; margin-right:auto">
-<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-14.png"/>
+<img src="https://github.com/krishnashed/data-pipeline/blob/main/Installation%20Docs/images/cvat-14.jpeg"/>
 </div>
