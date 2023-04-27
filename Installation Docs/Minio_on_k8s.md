@@ -399,3 +399,11 @@ And force format the Volumes, and get them back in `Ready` state by :
 ```shell
 kubectl directpv drives format --drives /dev/vd{c...f} --nodes k8-{4...7} --force
 ```
+
+## Network Encryption (TLS)
+
+MinIO supports Transport Layer Security (TLS) 1.2+ encryption of incoming and outgoing traffic.
+
+For Kubernetes clusters with a valid TLS Cluster Signing Certificate, the MinIO Kubernetes Operator can automatically generate TLS certificates while deploying or modifying a MinIO Tenant.
+
+Donot pass `--disable-tls` flag while creating minio tenant, to use TLS Encryption
