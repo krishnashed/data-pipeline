@@ -248,6 +248,12 @@ spec:
 kubectl apply -f standalone.yaml -n mongodb
 ```
 
+## Enable TLS for a Deployment
+
+For Ops Manager to monitor, deploy, or back up a MongoDB deployment that uses TLS, you must enable TLS for the Ops Manager project.
+
+Refer [this](https://www.mongodb.com/docs/ops-manager/current/tutorial/enable-ssl-for-a-deployment/) for more details.
+
 ## References
 
 - https://www.mongodb.com/docs/kubernetes-operator/master/tutorial/deploy-sharded-cluster/
