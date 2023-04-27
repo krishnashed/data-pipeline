@@ -1,4 +1,4 @@
-# Installing Longhorn on Kubernetes using kubectl
+# Installing Longhorn on Kubernetes using helm
 
 > Cloud native distributed block storage for Kubernetes
 
