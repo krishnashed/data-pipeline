@@ -123,7 +123,9 @@ NAME   AGE
 demo   8m22s
 ```
 
-### Extract credentials
+### Connecting to Cassandra Database
+
+Extract credentials
 
 Use the following commands to extract the username and password:
 
@@ -184,3 +186,173 @@ kubectl exec -it demo-dc1-default-sts-0 -n k8ssandra-operator -c cassandra -- cq
   joe@gamil.com |     Joe Jones |    VA
    sue@help.com |       Sue Sas |    CA
 ```
+
+## Scaling k8ssandra
+
+### Add nodes to a Cassandra Datacenter
+
+Steps to provision and scale up/down an Apache Cassandra® cluster in Kubernetes.
+
+We can Add nodes by updating the size property of the `K8ssandraCluster` spec:
+
+```shell
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: demo
+spec:
+  cassandra:
+    serverVersion: "4.0.1"
+    datacenters:
+      - metadata:
+          name: dc1
+        size: 4 # change this from 3 to 4
+        storageConfig:
+          cassandraDataVolumeClaimSpec:
+            storageClassName: standard
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 5Gi
+        config:
+          jvmOptions:
+            heapSize: 512M
+        stargate:
+          size: 1
+          heapSize: 256M
+```
+
+We can then update the cluster by running `kubectl apply` again:
+
+```shell
+kubectl apply -n k8ssandra-operator -f k8c1.yml
+```
+
+Underlying considerations when scaling up
+
+By default, cass-operator configures the Cassandra pods so that Kubernetes will not schedule multiple Cassandra pods on the same worker node. If you try to increase the cluster size beyond the number of available worker nodes, you may find that the additional pods do not deploy.
+
+### Remove nodes
+
+Just like with adding nodes, removing nodes is simply a matter of changing the configured `size` property. Then cass-operator does a few things when you decrease the datacenter size.
+
+Underlying considerations when scaling down
+
+cass-operator checks that the remaining nodes have enough capacity to handle the increased storage capacity.
+
+### Add a Datacenter to a K8ssandra Cluster
+
+K8ssandra Operator supports adding a new datacenter to an existing cluster.
+
+The following manifest adds datacenter `dc2` to existing cluster.
+
+```shell
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: demo
+spec:
+  cassandra:
+    serverVersion: "4.0.1"
+    datacenters:
+      - metadata:
+          name: dc1
+        size: 3
+        storageConfig:
+          cassandraDataVolumeClaimSpec:
+            storageClassName: longhorn
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 5Gi
+        config:
+          jvmOptions:
+            heapSize: 512M
+        stargate:
+          size: 1
+          heapSize: 256M
+      # Adding another datacenter
+      - metadata:
+          name: dc2
+        size: 3
+        storageConfig:
+          cassandraDataVolumeClaimSpec:
+            storageClassName: longhorn
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 5Gi
+        config:
+          jvmOptions:
+            heapSize: 512M
+        stargate:
+          size: 1
+          heapSize: 256M
+```
+
+State of k8ssandra cluster
+
+```shell
+$ kubectl get all -n k8ssandra-operator
+
+NAME                                                        READY   STATUS                   RESTARTS   AGE
+pod/demo-dc1-default-stargate-deployment-58d4dd98cf-tvvkd   1/1     Running                  0          30m
+pod/demo-dc1-default-stargate-deployment-58d4dd98cf-vwlk4   0/1     ContainerStatusUnknown   1          32m
+pod/demo-dc1-default-sts-0                                  2/2     Running                  0          38m
+pod/demo-dc1-default-sts-1                                  2/2     Running                  0          39m
+pod/demo-dc1-default-sts-2                                  2/2     Running                  0          39m
+pod/demo-dc2-default-stargate-deployment-5c65b889bf-mj5x4   1/1     Running                  0          4m59s
+pod/demo-dc2-default-stargate-deployment-5c65b889bf-qg2hv   0/1     Error                    0          6m16s
+pod/demo-dc2-default-sts-0                                  2/2     Running                  0          22m
+pod/demo-dc2-default-sts-1                                  2/2     Running                  0          25m
+pod/demo-dc2-default-sts-2                                  2/2     Running                  0          25m
+pod/k8ssandra-operator-858bb86995-sfssq                     0/1     Error                    0          72m
+pod/k8ssandra-operator-858bb86995-xp244                     1/1     Running                  0          71m
+pod/k8ssandra-operator-cass-operator-75cf5776db-gwjld       1/1     Running                  0          37m
+pod/k8ssandra-operator-cass-operator-75cf5776db-w4bmd       0/1     Completed                0          72m
+
+NAME                                                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                          AGE
+service/demo-dc1-additional-seed-service                   ClusterIP   None            <none>        <none>                                                           39m
+service/demo-dc1-all-pods-service                          ClusterIP   None            <none>        9042/TCP,8080/TCP,9103/TCP,9000/TCP                              39m
+service/demo-dc1-service                                   ClusterIP   None            <none>        9042/TCP,9142/TCP,8080/TCP,9103/TCP,9000/TCP                     39m
+service/demo-dc1-stargate-service                          ClusterIP   10.233.16.20    <none>        8080/TCP,8081/TCP,8082/TCP,8084/TCP,8085/TCP,8090/TCP,9042/TCP   29m
+service/demo-dc2-additional-seed-service                   ClusterIP   None            <none>        <none>                                                           25m
+service/demo-dc2-all-pods-service                          ClusterIP   None            <none>        9042/TCP,8080/TCP,9103/TCP,9000/TCP                              25m
+service/demo-dc2-service                                   ClusterIP   None            <none>        9042/TCP,9142/TCP,8080/TCP,9103/TCP,9000/TCP                     25m
+service/demo-dc2-stargate-service                          ClusterIP   10.233.47.78    <none>        8080/TCP,8081/TCP,8082/TCP,8084/TCP,8085/TCP,8090/TCP,9042/TCP   3m28s
+service/demo-seed-service                                  ClusterIP   None            <none>        <none>
+                      39m
+service/k8ssandra-operator-cass-operator-webhook-service   ClusterIP   10.233.3.157    <none>        443/TCP
+                      72m
+service/k8ssandra-operator-webhook-service                 ClusterIP   10.233.13.148   <none>        443/TCP
+                      72m
+
+NAME                                                   READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/demo-dc1-default-stargate-deployment   1/1     1            1           32m
+deployment.apps/demo-dc2-default-stargate-deployment   1/1     1            1           6m16s
+deployment.apps/k8ssandra-operator                     1/1     1            1           72m
+deployment.apps/k8ssandra-operator-cass-operator       1/1     1            1           72m
+
+NAME                                                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/demo-dc1-default-stargate-deployment-58d4dd98cf   1         1         1       32m
+replicaset.apps/demo-dc2-default-stargate-deployment-5c65b889bf   1         1         1       6m16s
+replicaset.apps/k8ssandra-operator-858bb86995                     1         1         1       72m
+replicaset.apps/k8ssandra-operator-cass-operator-75cf5776db       1         1         1       72m
+
+NAME                                    READY   AGE
+statefulset.apps/demo-dc1-default-sts   3/3     39m
+statefulset.apps/demo-dc2-default-sts   3/3     25m
+```
+
+Further, we need to establish replication of keyspaces if needed, rebuilding data-center if required.
+
+Reference for more details:
+
+- https://docs.k8ssandra.io/tasks/scale/add-dc/
+- https://medium.com/building-the-open-data-stack/deploy-a-multi-datacenter-apache-cassandra-cluster-in-kubernetes-cfd668629974
+- https://www.baeldung.com/cassandra-cluster-datacenters-racks-nodes
+- https://medium.com/building-the-open-data-stack/cloud-native-workshop-apache-cassandra-meets-kubernetes-20a0fca37443
+- https://thenewstack.io/deploy-a-multidata-center-cassandra-cluster-in-kubernetes/
