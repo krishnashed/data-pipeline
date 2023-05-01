@@ -34,7 +34,20 @@ omz_downloader --name horizontal-text-detection-0001 --precisions FP32 -o .
 Run benchmark app with -pc
 
 ```shell
-benchmark_app -m ./intel/horizontal-text-detection-0001/FP32/horizontal-text-detection-0001.xml -pc
+$ benchmark_app -m ./intel/horizontal-text-detection-0001/FP32/horizontal-text-detection-0001.xml -pc
+
+...
+Total time:     29.136 seconds
+Total CPU time: 29.136 seconds
+
+[ INFO ] Count:            58044 iterations
+[ INFO ] Duration:         60027.75 ms
+[ INFO ] Latency:
+[ INFO ]    Median:        22.66 ms
+[ INFO ]    Average:       28.85 ms
+[ INFO ]    Min:           17.35 ms
+[ INFO ]    Max:           159.70 ms
+[ INFO ] Throughput:   966.95 FPS
 ```
 
 We can see some kernels are running with BF16 precison with both avx512 and amx instructions.
@@ -52,7 +65,20 @@ omz_downloader --name horizontal-text-detection-0001 --precisions FP16-INT8 -o .
 Run benchmark app with -pc
 
 ```shell
-benchmark_app -m ./intel/horizontal-text-detection-0001/FP16-INT8/horizontal-text-detection-0001.xml -pc
+$ benchmark_app -m ./intel/horizontal-text-detection-0001/FP16-INT8/horizontal-text-detection-0001.xml -pc
+
+...
+Total time:     65.361 seconds
+Total CPU time: 65.361 seconds
+
+[ INFO ] Count:            102256 iterations
+[ INFO ] Duration:         60081.16 ms
+[ INFO ] Latency:
+[ INFO ]    Median:        52.40 ms
+[ INFO ]    Average:       65.39 ms
+[ INFO ]    Min:           30.80 ms
+[ INFO ]    Max:           193.56 ms
+[ INFO ] Throughput:   1701.96 FPS
 ```
 
 We can see some kernels are running with INT8 precison with both avx512 and amx instructions.
